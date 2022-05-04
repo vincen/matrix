@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8" />
+<title>matrix</title>
+<style>
+body{
+overflow: hidden;
+margin: 0;
+}
+</style>
+</head>
+<body>
+<canvas id="q"></canvas>
+<script>
+var s = window.screen;
+var width = q.width = s.width;
+var height = q.height = s.height;
+var letters = Array(256).join(1).split('');
+var draw = function () {
+var c = q.getContext('2d');
+c.font="15px Arial";
+c.fillStyle='rgba(0,0,0,.05)';
+c.fillRect(0,0,width,height);
+c.fillStyle='#0F0';
+letters.map(function(y_pos, index){
+var n = Math.random();
+if (n > 0.3) {
+text = String.fromCharCode(43+n*48);
+} else {
+text = String.fromCharCode(1.2448e4+n*96); // 显示日文
+}
+x_pos = index * 15;
+c.fillText(text, x_pos, y_pos);
+letters[index] = (y_pos > 758 + Math.random() * 1e4) ? 0 : y_pos + 15;
+c.font="15px Arial";
+});
+};
+setInterval(draw, 66);
+</script>
+</body>
+</html>
